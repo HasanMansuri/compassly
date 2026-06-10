@@ -1,45 +1,67 @@
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-
   return (
+    <header className="sticky top-0 z-50 bg-slate-950 border-b border-slate-800">
 
-    <nav className="border-b border-slate-800 bg-slate-950">
+      <div className="max-w-7xl mx-auto px-6 py-4">
 
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
-        <Link
-          to="/"
-          className="font-bold text-xl"
-        >
-          🧭 Compass Hub Pro
-        </Link>
+          {/* Logo */}
 
-        <div className="flex gap-6">
-
-          <Link to="/online-compass">
-            Compass
+          <Link
+            to="/"
+            className="text-2xl font-bold"
+          >
+            🧭 Compassly
           </Link>
 
-          <Link to="/qibla-finder">
-            Qibla
-          </Link>
+          {/* Navigation */}
 
-          <Link to="/distance-calculator">
-            Distance
-          </Link>
+          <nav className="flex flex-wrap gap-6 text-slate-300">
 
-          <Link to="/bearing-calculator">
-            Bearing
-          </Link>
-          <Link to="/coordinate-converter">
-            Coordinates
-          </Link>
+            <Link
+              to="/online-compass"
+              className="hover:text-white transition"
+            >
+              Compass
+            </Link>
+
+            <Link
+              to="/qibla-finder"
+              className="hover:text-white transition"
+            >
+              Qibla
+            </Link>
+
+            <Link
+              to="/distance-calculator"
+              className="hover:text-white transition"
+            >
+              Distance
+            </Link>
+
+            <Link
+              to="/bearing-calculator"
+              className="hover:text-white transition"
+            >
+              Bearing
+            </Link>
+
+            <Link
+              to="/coordinate-converter"
+              className="hover:text-white transition"
+            >
+              Coordinates
+            </Link>
+
+          </nav>
 
         </div>
 
       </div>
 
-    </nav>
+    </header>
   );
 }
