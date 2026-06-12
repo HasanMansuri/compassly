@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function DistanceCalculator() {
 
@@ -9,13 +9,90 @@ export default function DistanceCalculator() {
   const [lon2, setLon2] = useState("");
 
   const [distance, setDistance] = useState(null);
+  const [miles, setMiles] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+  const [accuracy, setAccuracy] = useState(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  function getLocation() {
+
+    if (!navigator.geolocation) {
+      setError("Geolocation not supported.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    navigator.geolocation.getCurrentPosition(
+
+      (position) => {
+
+        setLat1(
+          position.coords.latitude.toFixed(6)
+        );
+
+        setLon1(
+          position.coords.longitude.toFixed(6)
+        );
+
+        setAccuracy(
+          Math.round(position.coords.accuracy)
+        );
+
+        setLoading(false);
+      },
+
+      (err) => {
+
+        setLoading(false);
+
+        if (err.code === 1) {
+          setError(
+            "Location permission denied."
+          );
+        } else if (err.code === 2) {
+          setError(
+            "Location unavailable."
+          );
+        } else {
+          setError(
+            "Unable to get your location."
+          );
+        }
+      },
+
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 0,
+      }
+
+    );
+  }
 
   function calculateDistance() {
 
-    if (!lat1 || !lon1 || !lat2 || !lon2) {
-      alert("Please enter all coordinates");
+    if (
+      !lat1 ||
+      !lon1 ||
+      !lat2 ||
+      !lon2
+    ) {
+      setError(
+        "Please enter destination coordinates."
+      );
       return;
     }
+
+    setError("");
+
+    const R = 6371;
 
     const latitude1 = parseFloat(lat1);
     const longitude1 = parseFloat(lon1);
@@ -23,15 +100,13 @@ export default function DistanceCalculator() {
     const latitude2 = parseFloat(lat2);
     const longitude2 = parseFloat(lon2);
 
-    const R = 6371; // Earth radius in km
-
     const dLat =
       (latitude2 - latitude1) *
-      (Math.PI / 180);
+      Math.PI / 180;
 
     const dLon =
       (longitude2 - longitude1) *
-      (Math.PI / 180);
+      Math.PI / 180;
 
     const a =
       Math.sin(dLat / 2) *
@@ -50,111 +125,196 @@ export default function DistanceCalculator() {
         Math.sqrt(1 - a)
       );
 
-    const result = R * c;
+    const km = R * c;
 
-    setDistance(result.toFixed(2));
-  }
+    setDistance(
+      km.toFixed(2)
+    );
 
-  function useCurrentLocation() {
-
-    navigator.geolocation.getCurrentPosition(
-
-      (position) => {
-
-        setLat1(
-          position.coords.latitude.toFixed(6)
-        );
-
-        setLon1(
-          position.coords.longitude.toFixed(6)
-        );
-
-      },
-
-      () => {
-
-        alert(
-          "Unable to get your location"
-        );
-
-      }
-
+    setMiles(
+      (km * 0.621371).toFixed(2)
     );
   }
 
   return (
 
-    <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6">
+    <div className="max-w-4xl mx-auto px-4">
 
-      <h3 className="text-xl font-semibold mb-4">
-        🌍 Distance Calculator
-      </h3>
+      <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6">
 
-      <button
-        onClick={useCurrentLocation}
-        className="bg-green-600 px-4 py-2 rounded mb-4"
-      >
-        Use My Location
-      </button>
+        <h2 className="text-3xl font-bold text-center mb-6">
+          🌍 Distance Calculator
+        </h2>
 
-      <input
-        type="number"
-        step="any"
-        placeholder="Latitude 1"
-        value={lat1}
-        onChange={(e) => setLat1(e.target.value)}
-        className="w-full p-3 mb-2 rounded text-black"
-      />
+        <button
+          onClick={getLocation}
+          className="
+            w-full
+            bg-green-600
+            hover:bg-green-700
+            py-4
+            rounded-2xl
+            font-semibold
+            mb-6
+          "
+        >
+          {loading
+            ? "Getting Location..."
+            : "📍 Use My Location"}
+        </button>
 
-      <input
-        type="number"
-        step="any"
-        placeholder="Longitude 1"
-        value={lon1}
-        onChange={(e) => setLon1(e.target.value)}
-        className="w-full p-3 mb-2 rounded text-black"
-      />
+        {error && (
 
-      <input
-        type="number"
-        step="any"
-        placeholder="Latitude 2"
-        value={lat2}
-        onChange={(e) => setLat2(e.target.value)}
-        className="w-full p-3 mb-2 rounded text-black"
-      />
+          <div
+            className="
+              bg-red-500/10
+              border
+              border-red-500/20
+              text-red-400
+              p-4
+              rounded-xl
+              mb-6
+            "
+          >
+            {error}
+          </div>
 
-      <input
-        type="number"
-        step="any"
-        placeholder="Longitude 2"
-        value={lon2}
-        onChange={(e) => setLon2(e.target.value)}
-        className="w-full p-3 mb-4 rounded text-black"
-      />
+        )}
 
-      <button
-        onClick={calculateDistance}
-        className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded"
-      >
-        Calculate Distance
-      </button>
+        <div className="bg-slate-800 rounded-2xl p-5 mb-6">
 
-      {distance && (
-        <div className="mt-4 p-4 bg-slate-800 rounded">
+          <h3 className="text-slate-400 mb-3">
+            Current Location
+          </h3>
 
-          <h4 className="font-semibold">
-            Result
-          </h4>
-
-          <p className="text-2xl mt-2">
-            {distance} km
+          <p>
+            Latitude: {lat1 || "--"}
           </p>
 
+          <p>
+            Longitude: {lon1 || "--"}
+          </p>
+
+          {accuracy && (
+
+            <p className="text-green-400 mt-2">
+              Accuracy: ±{accuracy}m
+            </p>
+
+          )}
+
         </div>
-      )}
+
+        <div className="grid md:grid-cols-2 gap-4">
+
+          <input
+            type="number"
+            step="any"
+            placeholder="Destination Latitude"
+            value={lat2}
+            onChange={(e) =>
+              setLat2(e.target.value)
+            }
+            className="
+              bg-slate-800
+              text-white
+              p-4
+              rounded-xl
+              border
+              border-slate-700
+              w-full
+            "
+          />
+
+          <input
+            type="number"
+            step="any"
+            placeholder="Destination Longitude"
+            value={lon2}
+            onChange={(e) =>
+              setLon2(e.target.value)
+            }
+            className="
+              bg-slate-800
+              text-white
+              p-4
+              rounded-xl
+              border
+              border-slate-700
+              w-full
+            "
+          />
+
+        </div>
+
+        <button
+          onClick={calculateDistance}
+          className="
+            mt-6
+            w-full
+            bg-blue-600
+            hover:bg-blue-700
+            py-4
+            rounded-2xl
+            font-semibold
+          "
+        >
+          Calculate Distance
+        </button>
+
+        {distance && (
+
+          <>
+            <div className="grid md:grid-cols-2 gap-4 mt-6">
+
+              <div className="bg-slate-800 rounded-2xl p-5 text-center">
+
+                <p className="text-slate-400">
+                  Distance (KM)
+                </p>
+
+                <p className="text-4xl font-bold mt-2">
+                  {distance}
+                </p>
+
+              </div>
+
+              <div className="bg-slate-800 rounded-2xl p-5 text-center">
+
+                <p className="text-slate-400">
+                  Distance (Miles)
+                </p>
+
+                <p className="text-4xl font-bold mt-2">
+                  {miles}
+                </p>
+
+              </div>
+
+            </div>
+
+            <a
+              href={`https://www.google.com/maps?q=${lat2},${lon2}`}
+              target="_blank"
+              rel="noreferrer"
+              className="
+                mt-4
+                block
+                text-center
+                bg-slate-800
+                hover:bg-slate-700
+                p-4
+                rounded-2xl
+              "
+            >
+              🗺 Open Destination In Google Maps
+            </a>
+
+          </>
+        )}
+
+      </div>
 
     </div>
-
   );
 }
