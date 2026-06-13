@@ -2,374 +2,370 @@ import { useEffect, useState } from "react";
 
 export default function QiblaFinder() {
 
-const [heading,setHeading]=useState(0);
+  const [heading, setHeading] = useState(0);
 
-const [qibla,setQibla]=useState(0);
+  const [qiblaAngle, setQiblaAngle] = useState(0);
 
-const [distance,setDistance]=useState(null);
+  const [location, setLocation] = useState(null);
 
-const [location,setLocation]=useState(null);
+  const [error, setError] = useState("");
 
-const [error,setError]=useState("");
+  const [permissionNeeded, setPermissionNeeded] =
+    useState(false);
 
-const [loading,setLoading]=useState(false);
+  const makkahLat = 21.4225;
 
-const makkahLat=21.4225;
+  const makkahLon = 39.8262;
 
-const makkahLon=39.8262;
 
 
+  function getQiblaDirection(lat, lon) {
 
-function calculateQibla(lat,lon){
+    const lat1 = lat * Math.PI / 180;
 
-const φ1=lat*Math.PI/180;
+    const lon1 = lon * Math.PI / 180;
 
-const λ1=lon*Math.PI/180;
+    const lat2 = makkahLat * Math.PI / 180;
 
-const φ2=makkahLat*Math.PI/180;
+    const lon2 = makkahLon * Math.PI / 180;
 
-const λ2=makkahLon*Math.PI/180;
+    const dLon = lon2 - lon1;
 
-const y=
+    const y = Math.sin(dLon);
 
-Math.sin(λ2-λ1)
+    const x =
 
-*
+      Math.cos(lat1) *
 
-Math.cos(φ2);
+      Math.tan(lat2)
 
-const x=
+      -
 
-Math.cos(φ1)
+      Math.sin(lat1) *
 
-*
+      Math.cos(dLon);
 
-Math.sin(φ2)
+    let bearing =
 
--
+      Math.atan2(y, x)
 
-Math.sin(φ1)
+      * 180
 
-*
+      / Math.PI;
 
-Math.cos(φ2)
+    bearing = (bearing + 360) % 360;
 
-*
+    return bearing;
 
-Math.cos(λ2-λ1);
+  }
 
-let bearing=
 
-Math.atan2(y,x)
 
-*
+  function getLocation() {
 
-180
+    setError("");
 
-/
+    navigator.geolocation.getCurrentPosition(
 
-Math.PI;
+      (position) => {
 
-bearing=(bearing+360)%360;
+        const lat = position.coords.latitude;
 
-setQibla(bearing);
+        const lon = position.coords.longitude;
 
-}
+        setLocation({
 
+          lat,
 
+          lon
 
-function calculateDistance(lat,lon){
+        });
 
-const R=6371;
+        setQiblaAngle(
 
-const dLat=
+          getQiblaDirection(
 
-(makkahLat-lat)
+            lat,
 
-*
+            lon
 
-Math.PI
+          )
 
-/
+        );
 
-180;
+      },
 
-const dLon=
+      () => {
 
-(makkahLon-lon)
+        setError(
 
-*
+          "Please allow location access."
 
-Math.PI
+        );
 
-/
+      },
 
-180;
+      {
 
-const a=
+        enableHighAccuracy: true,
 
-Math.sin(dLat/2)
+        timeout: 15000,
 
-*
+        maximumAge: 0
 
-Math.sin(dLat/2)
+      }
 
-+
+    );
 
-Math.cos(
+  }
 
-lat*Math.PI/180
 
-)
 
-*
+  async function requestCompassPermission() {
 
-Math.cos(
+    try {
 
-makkahLat*Math.PI/180
+      if (
 
-)
+        typeof DeviceOrientationEvent !==
 
-*
+        "undefined"
 
-Math.sin(dLon/2)
+        &&
 
-*
+        typeof DeviceOrientationEvent
 
-Math.sin(dLon/2);
+          .requestPermission ===
 
-const c=
+        "function"
 
-2*
+      ) {
 
-Math.atan2(
+        const permission =
 
-Math.sqrt(a),
+          await DeviceOrientationEvent
 
-Math.sqrt(1-a)
+            .requestPermission();
 
-);
+        if (
 
-setDistance(
+          permission ===
 
-(R*c).toFixed(0)
+          "granted"
 
-);
+        ) {
 
-}
+          startCompass();
 
+        }
 
+      }
 
-function getLocation(){
+      else {
 
-setLoading(true);
+        startCompass();
 
-setError("");
+      }
 
-navigator.geolocation.getCurrentPosition(
+    }
 
-(position)=>{
+    catch {
 
-const lat=
+      setError(
 
-position.coords.latitude;
+        "Compass permission denied."
 
-const lon=
+      );
 
-position.coords.longitude;
+    }
 
-setLocation({
+  }
 
-lat,
 
-lon
 
-});
+  function startCompass() {
 
-calculateQibla(
+    window.addEventListener(
 
-lat,
+      "deviceorientation",
 
-lon
+      handleOrientation,
 
-);
+      true
 
-calculateDistance(
+    );
 
-lat,
+    setPermissionNeeded(false);
 
-lon
+  }
 
-);
 
-setLoading(false);
 
-},
+  function handleOrientation(event) {
 
-()=>{
+    let compass = null;
 
-setLoading(false);
 
-setError(
 
-"Location permission denied"
+    if (
 
-);
+      event.webkitCompassHeading
 
-},
+    ) {
 
-{
+      compass =
 
-enableHighAccuracy:true,
+        event.webkitCompassHeading;
 
-timeout:15000,
+    }
 
-maximumAge:0
+    else if (
 
-}
+      event.alpha !== null
 
-);
+    ) {
 
-}
+      compass =
 
+        360 -
 
+        event.alpha;
 
+    }
 
-useEffect(()=>{
 
-const handleOrientation=(event)=>{
 
-let compass=null;
+    if (
 
-if(
+      compass !== null
 
-event.webkitCompassHeading
+    ) {
 
-){
+      setHeading(
 
-compass=
+        prev =>
 
-event.webkitCompassHeading;
+          prev +
 
-}
+          (
 
-else if(
+            compass -
 
-event.alpha!==null
+            prev
 
-){
+          ) * 0.15
 
-compass=
+      );
 
-360-
+    }
 
-event.alpha;
+  }
 
-}
 
-if(
 
-compass!==null
+  useEffect(() => {
 
-){
+    getLocation();
 
-setHeading(
 
-Math.round(compass)
 
-);
+    if (
 
-}
+      typeof DeviceOrientationEvent
 
-};
+      !== "undefined"
 
+      &&
 
+      typeof DeviceOrientationEvent
 
-const startCompass=async()=>{
+        .requestPermission ===
 
-try{
+      "function"
 
-if(
+    ) {
 
-typeof DeviceOrientationEvent!=="undefined"
+      setPermissionNeeded(true);
 
-&&
+    }
 
-typeof DeviceOrientationEvent.requestPermission==="function"
+    else {
 
-){
+      startCompass();
 
-const permission=
+    }
 
-await DeviceOrientationEvent.requestPermission();
 
-if(
 
-permission!=="granted"
+    return () => {
 
-){
+      window.removeEventListener(
 
-return;
+        "deviceorientation",
 
-}
+        handleOrientation,
 
-}
+        true
 
-window.addEventListener(
+      );
 
-"deviceorientation",
+    };
 
-handleOrientation,
+  }, []);
 
-true
 
-);
 
-}
-
-catch(err){
-
-console.log(err);
-
-}
-
-};
-
-
-
-startCompass();
-
-
-
-return()=>{
-
-window.removeEventListener(
-
-"deviceorientation",
-
-handleOrientation,
-
-true
-
-);
-
-};
-
-},[]);
-
-
-
-return(
+  return (
 
 <div className="max-w-md mx-auto px-4 py-6">
 
-<div className="bg-slate-900 border border-yellow-700/30 rounded-[35px] p-6 shadow-2xl">
+<div className="bg-slate-900 rounded-3xl border border-slate-800 p-6 shadow-2xl">
 
-<h1 className="text-center text-3xl md:text-4xl font-bold mb-6">
+<h1 className="text-center text-3xl font-bold">
 
 🕋 Qibla Finder
 
 </h1>
+
+<p className="text-center text-slate-400 mt-2">
+
+Find the direction of Kaaba
+
+</p>
+
+
+
+{permissionNeeded && (
+
+<button
+
+onClick={requestCompassPermission}
+
+className="
+
+w-full
+
+bg-blue-600
+
+hover:bg-blue-700
+
+rounded-2xl
+
+py-3
+
+font-bold
+
+mt-5
+
+"
+
+>
+
+Enable Compass
+
+</button>
+
+)}
 
 
 
@@ -381,47 +377,31 @@ className="
 
 w-full
 
-bg-yellow-500
+bg-green-600
 
-hover:bg-yellow-400
-
-text-black
-
-font-bold
-
-py-4
+hover:bg-green-700
 
 rounded-2xl
 
-transition
+py-4
+
+font-bold
+
+mt-4
 
 "
 
 >
 
-{
-
-loading
-
-?
-
-"Getting Location..."
-
-:
-
-"📍 Use My Location"
-
-}
+📍 Use My Location
 
 </button>
 
 
 
-{error &&
+{error && (
 
 <div className="
-
-mt-4
 
 bg-red-500/10
 
@@ -435,6 +415,8 @@ rounded-2xl
 
 p-4
 
+mt-5
+
 text-center
 
 ">
@@ -443,11 +425,11 @@ text-center
 
 </div>
 
-}
+)}
 
 
 
-<div className="flex justify-center mt-8">
+<div className="flex justify-center mt-10">
 
 <div
 
@@ -461,37 +443,99 @@ h-[300px]
 
 rounded-full
 
-bg-gradient-to-br
+bg-white
 
-from-yellow-200
+border-[12px]
 
-to-yellow-500
+border-green-600
 
-shadow-2xl
-
-"
-
->
-
-
-
-<div
-
-className="
-
-absolute
-
-inset-[15px]
-
-rounded-full
-
-bg-slate-950
+shadow-[0_0_40px_rgba(34,197,94,0.35)]
 
 overflow-hidden
 
 "
 
 >
+
+
+
+{
+
+Array.from({
+
+length:36
+
+}).map(
+
+(_,i)=>(
+
+<div
+
+key={i}
+
+className="
+
+absolute
+
+left-1/2
+
+top-1/2
+
+origin-bottom
+
+"
+
+style={{
+
+height:
+
+i%3===0
+
+?
+
+"18px"
+
+:
+
+"10px",
+
+width:"2px",
+
+background:
+
+i%3===0
+
+?
+
+"#166534"
+
+:
+
+"#86efac",
+
+transform:
+
+`
+
+translate(-50%,-100%)
+
+rotate(${i*10}deg)
+
+translateY(-132px)
+
+`
+
+}}
+
+>
+
+</div>
+
+)
+
+)
+
+}
 
 
 
@@ -505,41 +549,37 @@ transform:
 
 `rotate(-${heading}deg)`,
 
-transition:"0.2s"
+transition:
+
+"transform 0.12s linear"
 
 }}
 
 >
 
-
-
-<div className="absolute top-4 left-1/2 -translate-x-1/2 text-red-500 text-3xl font-bold">
+<div className="absolute top-3 left-1/2 -translate-x-1/2 text-red-600 text-4xl font-bold">
 
 N
 
 </div>
 
-
-
-<div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-3xl font-bold">
+<div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-slate-800 text-3xl font-bold">
 
 S
 
 </div>
 
-
-
-<div className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-3xl font-bold">
+<div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-800 text-3xl font-bold">
 
 W
 
 </div>
 
-
-
-<div className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-3xl font-bold">
+<div className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-800 text-3xl font-bold">
 
 E
+
+</div>
 
 </div>
 
@@ -553,13 +593,15 @@ style={{
 
 transform:
 
-`rotate(${qibla}deg)`
+`rotate(${qiblaAngle-heading}deg)`,
+
+transition:
+
+"transform 0.2s ease"
 
 }}
 
 >
-
-
 
 <div
 
@@ -567,23 +609,19 @@ className="
 
 absolute
 
-top-4
+top-5
 
 left-1/2
 
 -translate-x-1/2
 
-text-5xl
+text-[55px]
 
 "
 
 >
 
 🕋
-
-</div>
-
-
 
 </div>
 
@@ -605,9 +643,9 @@ w-0
 
 h-0
 
-border-l-[20px]
+border-l-[18px]
 
-border-r-[20px]
+border-r-[18px]
 
 border-b-[70px]
 
@@ -659,13 +697,15 @@ bg-red-500
 
 </div>
 
+
+
 </div>
 
 </div>
 
-</div>
 
 
+{location && (
 
 <div className="grid grid-cols-2 gap-4 mt-8">
 
@@ -679,7 +719,7 @@ Qibla
 
 <p className="text-3xl font-bold">
 
-{qibla.toFixed(1)}°
+{qiblaAngle.toFixed(1)}°
 
 </p>
 
@@ -697,7 +737,7 @@ Heading
 
 <p className="text-3xl font-bold">
 
-{heading}°
+{Math.round(heading)}°
 
 </p>
 
@@ -705,62 +745,32 @@ Heading
 
 </div>
 
-
-
-{
-
-distance &&
-
-<div className="mt-4 bg-slate-800 rounded-2xl p-5 text-center">
-
-<p className="text-slate-400">
-
-Distance To Makkah
-
-</p>
-
-<p className="text-4xl font-bold mt-2">
-
-{distance} km
-
-</p>
-
-</div>
-
-}
+)}
 
 
 
-{
+<p className="
 
-location &&
+text-center
 
-<div className="mt-4 bg-slate-800 rounded-2xl p-5 text-center">
+text-sm
 
-<p>
+text-slate-400
 
-📍
+mt-6
 
-{location.lat.toFixed(4)}
+">
 
-,
+Move your phone in a figure 8 motion
 
-{" "}
-
-{location.lon.toFixed(4)}
+if the compass seems inaccurate.
 
 </p>
 
 </div>
 
-}
-
-
-
 </div>
 
-</div>
-
-);
+  );
 
 }
