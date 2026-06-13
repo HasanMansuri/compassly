@@ -7,7 +7,7 @@ export default function CoordinatePage() {
 
     <div className="max-w-6xl mx-auto p-8">
 
-      <h1 className="text-5xl font-bold mb-8">
+      <h1 className="text-4xl md:text-6xl font-bold">
         Coordinate Converter
       </h1>
 

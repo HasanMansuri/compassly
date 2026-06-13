@@ -80,7 +80,7 @@ return ( <main className="relative overflow-hidden">
         🚀 Free Navigation Toolkit
       </div>
 
-      <h1 className="text-5xl md:text-7xl lg:text-8xl font-black">
+      <h1 className="text-4xl md:text-6xl font-bold">
         Compassly
       </h1>
 

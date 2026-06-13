@@ -5,7 +5,7 @@ return ( <main className="max-w-7xl mx-auto px-4 py-10">
 
   <div className="text-center mb-10">
 
-    <h1 className="text-5xl md:text-6xl font-black">
+    <h1 className="text-4xl md:text-6xl font-bold">
       🧭 Online Compass
     </h1>
 

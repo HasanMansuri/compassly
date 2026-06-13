@@ -4,7 +4,7 @@ export default function DistancePage() {
   return (
     <div className="max-w-6xl mx-auto p-8">
 
-      <h1 className="text-5xl font-bold mb-6">
+      <h1 className="text-4xl md:text-6xl font-bold">
         Distance Calculator
       </h1>
 
