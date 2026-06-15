@@ -1,207 +1,279 @@
-import { Link } from "react-router-dom";
+
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
 
+  const location = useLocation();
+
+  const navItems = [
+
+    {
+      name: "Compass",
+      icon: "🧭",
+      path: "/online-compass"
+    },
+
+    {
+      name: "Qibla",
+      icon: "🕋",
+      path: "/qibla-finder"
+    },
+
+    {
+      name: "Distance",
+      icon: "📏",
+      path: "/distance-calculator"
+    },
+
+    {
+      name: "Bearing",
+      icon: "🎯",
+      path: "/bearing-calculator"
+    },
+
+    {
+      name: "Coordinates",
+      icon: "📍",
+      path: "/coordinate-converter"
+    }
+
+  ];
+
+
   return (
 
-    <header
-      className="
-      sticky
-      top-0
-      z-50
-      backdrop-blur-xl
-      bg-slate-950/70
-      border-b
-      border-slate-800
-      "
-    >
+<header
+className="
 
-      <div className="max-w-7xl mx-auto px-4 py-4">
+sticky
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-5">
+top-0
 
-          {/* Logo */}
+z-50
 
-          <Link
-            to="/"
-            className="flex items-center gap-3"
-          >
+backdrop-blur-xl
 
-            <div
-              className="
-              w-14
-              h-14
-              rounded-2xl
-              bg-gradient-to-br
-              from-green-500
-              to-emerald-700
-              flex
-              items-center
-              justify-center
-              text-3xl
-              shadow-lg
-              "
-            >
+bg-slate-950/80
 
-              🧭
+border-b
 
-            </div>
+border-slate-800
 
-            <div>
+"
 
-              <h1 className="text-3xl font-black">
+>
 
-                Compassly
+<div className="
 
-              </h1>
+max-w-6xl
 
-              <p className="text-xs text-slate-400">
+mx-auto
 
-                Compass • Qibla • GPS
+px-5
 
-              </p>
+py-6
 
-            </div>
+"
 
-          </Link>
+>
 
 
-          {/* Navigation */}
+<div className="
 
-          <nav
-            className="
-            flex
-            flex-wrap
-            justify-center
-            gap-3
-            "
-          >
+flex
 
-            <Link
+items-center
 
-              to="/online-compass"
+justify-center
 
-              className="
-              px-4
-              py-2
-              rounded-xl
-              bg-slate-900
-              border
-              border-slate-800
-              hover:border-green-500
-              hover:text-green-400
-              transition
-              "
+gap-5
 
-            >
+"
 
-              🧭 Compass
-
-            </Link>
+>
 
 
+<div
 
-            <Link
+className="
 
-              to="/qibla-finder"
+w-24
 
-              className="
-              px-4
-              py-2
-              rounded-xl
-              bg-slate-900
-              border
-              border-slate-800
-              hover:border-green-500
-              hover:text-green-400
-              transition
-              "
+h-24
 
-            >
+rounded-[30px]
 
-              🕋 Qibla
+bg-gradient-to-br
 
-            </Link>
+from-green-500
+
+to-emerald-700
+
+flex
+
+items-center
+
+justify-center
+
+text-6xl
+
+shadow-[0_0_50px_rgba(0,255,120,.4)]
+
+"
+
+>
+
+🧭
+
+</div>
 
 
+<div>
 
-            <Link
+<h1 className="
 
-              to="/distance-calculator"
+text-5xl
 
-              className="
-              px-4
-              py-2
-              rounded-xl
-              bg-slate-900
-              border
-              border-slate-800
-              hover:border-green-500
-              hover:text-green-400
-              transition
-              "
+font-black
 
-            >
+text-white
 
-              📏 Distance
+"
 
-            </Link>
+>
+
+Compassly
+
+</h1>
+
+
+<p className="
+
+text-slate-400
+
+text-xl
+
+mt-1
+
+"
+
+>
+
+Compass • Qibla • GPS
+
+</p>
+
+</div>
+
+</div>
 
 
 
-            <Link
+<div
 
-              to="/bearing-calculator"
+className="
 
-              className="
-              px-4
-              py-2
-              rounded-xl
-              bg-slate-900
-              border
-              border-slate-800
-              hover:border-green-500
-              hover:text-green-400
-              transition
-              "
+grid
 
-            >
+grid-cols-2
 
-              🎯 Bearing
+gap-5
 
-            </Link>
+mt-8
+
+"
+
+>
+
+{
+
+navItems.map((item) => (
+
+<Link
+
+key={item.path}
+
+to={item.path}
+
+className={`
+
+rounded-3xl
+
+border
+
+px-6
+
+py-6
+
+text-center
+
+font-semibold
+
+text-2xl
+
+transition-all
+
+duration-300
+
+shadow-lg
+
+${
+
+location.pathname === item.path
+
+?
+
+"bg-blue-600 border-blue-500 text-white scale-105"
+
+:
+
+"bg-slate-900/80 border-slate-800 text-slate-200 hover:bg-slate-800 hover:scale-105"
+
+}
+
+${
+
+item.name === "Coordinates"
+
+?
+
+"col-span-2"
+
+:
+
+""
+
+}
+
+`}
+
+>
+
+<div className="text-4xl">
+
+{item.icon}
+
+</div>
 
 
+<div className="mt-2">
 
-            <Link
+{item.name}
 
-              to="/coordinate-converter"
+</div>
 
-              className="
-              px-4
-              py-2
-              rounded-xl
-              bg-slate-900
-              border
-              border-slate-800
-              hover:border-green-500
-              hover:text-green-400
-              transition
-              "
+</Link>
 
-            >
+))
 
-              📍 Coordinates
+}
 
-            </Link>
+</div>
 
-          </nav>
 
-        </div>
+</div>
 
-      </div>
-
-    </header>
+</header>
 
   );
 
