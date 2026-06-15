@@ -1,11 +1,8 @@
-
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
 
-  const location = useLocation();
-
-  const navItems = [
+  const menus = [
 
     {
       name: "Compass",
@@ -43,6 +40,7 @@ export default function Navbar() {
   return (
 
 <header
+
 className="
 
 sticky
@@ -53,7 +51,7 @@ z-50
 
 backdrop-blur-xl
 
-bg-slate-950/80
+bg-slate-950/90
 
 border-b
 
@@ -63,22 +61,15 @@ border-slate-800
 
 >
 
-<div className="
-
-max-w-6xl
-
-mx-auto
-
-px-5
-
-py-6
-
-"
-
->
+<div className="max-w-6xl mx-auto px-4 py-4">
 
 
-<div className="
+
+<Link
+
+to="/"
+
+className="
 
 flex
 
@@ -86,22 +77,21 @@ items-center
 
 justify-center
 
-gap-5
+gap-4
 
 "
 
 >
 
-
 <div
 
 className="
 
-w-24
+w-16
 
-h-24
+h-16
 
-rounded-[30px]
+rounded-3xl
 
 bg-gradient-to-br
 
@@ -115,9 +105,9 @@ items-center
 
 justify-center
 
-text-6xl
+text-4xl
 
-shadow-[0_0_50px_rgba(0,255,120,.4)]
+shadow-lg
 
 "
 
@@ -130,13 +120,19 @@ shadow-[0_0_50px_rgba(0,255,120,.4)]
 
 <div>
 
-<h1 className="
+<h1
 
-text-5xl
+className="
+
+text-3xl
+
+md:text-5xl
 
 font-black
 
 text-white
+
+leading-none
 
 "
 
@@ -147,11 +143,15 @@ Compassly
 </h1>
 
 
-<p className="
+<p
+
+className="
+
+text-sm
+
+md:text-lg
 
 text-slate-400
-
-text-xl
 
 mt-1
 
@@ -165,21 +165,23 @@ Compass • Qibla • GPS
 
 </div>
 
-</div>
+</Link>
 
 
 
-<div
+<nav
 
 className="
 
-grid
+flex
 
-grid-cols-2
+justify-center
 
-gap-5
+flex-wrap
 
-mt-8
+gap-3
+
+mt-5
 
 "
 
@@ -187,80 +189,51 @@ mt-8
 
 {
 
-navItems.map((item) => (
+menus.map((item)=>(
 
 <Link
 
-key={item.path}
+key={item.name}
 
 to={item.path}
 
-className={`
+className="
 
-rounded-3xl
+px-4
+
+py-2
+
+rounded-2xl
+
+bg-slate-900
 
 border
 
-px-6
+border-slate-800
 
-py-6
+text-slate-200
 
-text-center
+text-sm
 
-font-semibold
+md:text-lg
 
-text-2xl
+hover:border-green-500
 
-transition-all
+hover:text-white
 
-duration-300
+transition
 
-shadow-lg
-
-${
-
-location.pathname === item.path
-
-?
-
-"bg-blue-600 border-blue-500 text-white scale-105"
-
-:
-
-"bg-slate-900/80 border-slate-800 text-slate-200 hover:bg-slate-800 hover:scale-105"
-
-}
-
-${
-
-item.name === "Coordinates"
-
-?
-
-"col-span-2"
-
-:
-
-""
-
-}
-
-`}
+"
 
 >
 
-<div className="text-4xl">
+<span className="mr-1">
 
 {item.icon}
 
-</div>
-
-
-<div className="mt-2">
+</span>
 
 {item.name}
-
-</div>
 
 </Link>
 
@@ -268,7 +241,8 @@ item.name === "Coordinates"
 
 }
 
-</div>
+</nav>
+
 
 
 </div>

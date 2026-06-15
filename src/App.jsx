@@ -18,14 +18,36 @@ export default function App() {
   return (
     <BrowserRouter>
 
-     <div className="
+     <div
+className="
 min-h-screen
-bg-gradient-to-b
-from-black
-via-slate-950
-to-green-950
 text-white
-">
+bg-slate-950
+"
+style={{
+
+background:
+
+`
+radial-gradient(
+circle at top,
+rgba(0,255,120,.08),
+transparent 30%
+),
+
+radial-gradient(
+circle at bottom,
+rgba(0,100,255,.08),
+transparent 40%
+),
+
+#020617
+
+`
+
+}}
+
+>
 
         <Navbar />
 
