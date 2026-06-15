@@ -2,48 +2,16 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
 
-  const menus = [
-
-    {
-      name: "Compass",
-      icon: "🧭",
-      path: "/online-compass"
-    },
-
-    {
-      name: "Qibla",
-      icon: "🕋",
-      path: "/qibla-finder"
-    },
-
-    {
-      name: "Distance",
-      icon: "📏",
-      path: "/distance-calculator"
-    },
-
-    {
-      name: "Bearing",
-      icon: "🎯",
-      path: "/bearing-calculator"
-    },
-
-    {
-      name: "Coordinates",
-      icon: "📍",
-      path: "/coordinate-converter"
-    }
-
-  ];
-
-
- return (
+return (
 
 <header
+
 className="
 
 sticky
+
 top-0
+
 z-50
 
 backdrop-blur-xl
@@ -55,14 +23,31 @@ border-b
 border-slate-800
 
 "
+
 >
 
 <div className="max-w-6xl mx-auto px-4 py-3">
 
 
-{/* TOP */}
+{/* LOGO */}
 
-<div className="flex items-center justify-center gap-3">
+<Link
+
+to="/"
+
+className="
+
+flex
+
+items-center
+
+justify-center
+
+gap-3
+
+"
+
+>
 
 <div
 
@@ -88,8 +73,6 @@ justify-center
 
 text-3xl
 
-shadow-lg
-
 "
 
 >
@@ -99,19 +82,18 @@ shadow-lg
 </div>
 
 
+
 <div>
 
 <h1
 
 className="
 
-text-3xl
+text-4xl
 
 font-black
 
 leading-none
-
-text-white
 
 "
 
@@ -126,11 +108,9 @@ Compassly
 
 className="
 
-text-xs
+text-sm
 
 text-slate-400
-
-mt-1
 
 "
 
@@ -142,7 +122,7 @@ Compass • Qibla • GPS
 
 </div>
 
-</div>
+</Link>
 
 
 
@@ -156,15 +136,11 @@ flex
 
 justify-center
 
-gap-2
-
-overflow-x-auto
+gap-5
 
 mt-4
 
-pb-1
-
-scrollbar-hide
+text-3xl
 
 "
 
@@ -174,29 +150,13 @@ scrollbar-hide
 
 to="/online-compass"
 
-className="
+title="Compass"
 
-whitespace-nowrap
-
-px-3
-
-py-2
-
-rounded-full
-
-bg-slate-900
-
-border
-
-border-slate-800
-
-text-sm
-
-"
+className="hover:scale-110 transition"
 
 >
 
-🧭 Compass
+🧭
 
 </Link>
 
@@ -206,29 +166,13 @@ text-sm
 
 to="/qibla-finder"
 
-className="
+title="Qibla"
 
-whitespace-nowrap
-
-px-3
-
-py-2
-
-rounded-full
-
-bg-slate-900
-
-border
-
-border-slate-800
-
-text-sm
-
-"
+className="hover:scale-110 transition"
 
 >
 
-🕋 Qibla
+🕋
 
 </Link>
 
@@ -238,29 +182,13 @@ text-sm
 
 to="/distance-calculator"
 
-className="
+title="Distance"
 
-whitespace-nowrap
-
-px-3
-
-py-2
-
-rounded-full
-
-bg-slate-900
-
-border
-
-border-slate-800
-
-text-sm
-
-"
+className="hover:scale-110 transition"
 
 >
 
-📏 Distance
+📏
 
 </Link>
 
@@ -270,29 +198,13 @@ text-sm
 
 to="/bearing-calculator"
 
-className="
+title="Bearing"
 
-whitespace-nowrap
-
-px-3
-
-py-2
-
-rounded-full
-
-bg-slate-900
-
-border
-
-border-slate-800
-
-text-sm
-
-"
+className="hover:scale-110 transition"
 
 >
 
-🎯 Bearing
+🎯
 
 </Link>
 
@@ -302,37 +214,24 @@ text-sm
 
 to="/coordinate-converter"
 
-className="
+title="Coordinates"
 
-whitespace-nowrap
-
-px-3
-
-py-2
-
-rounded-full
-
-bg-slate-900
-
-border
-
-border-slate-800
-
-text-sm
-
-"
+className="hover:scale-110 transition"
 
 >
 
-📍 Coordinates
+📍
 
 </Link>
 
 
 </nav>
 
+
 </div>
 
 </header>
 
-)}
+)
+
+}
