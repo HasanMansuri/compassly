@@ -1,348 +1,347 @@
 import { Link } from "react-router-dom";
-import HomeCompass from "../components/HomeCompass";
-
-export default function Home() {
 
 const tools = [
-{
-icon: "🧭",
-title: "Online Compass",
-description: "Live compass powered by your device sensors.",
-path: "/online-compass",
-},
-{
-icon: "🕋",
-title: "Qibla Finder",
-description: "Instant Qibla direction from your current location.",
-path: "/qibla-finder",
-},
-{
-icon: "📏",
-title: "Distance Calculator",
-description: "Measure distance between locations accurately.",
-path: "/distance-calculator",
-},
-{
-icon: "🎯",
-title: "Bearing Calculator",
-description: "Find precise direction and heading.",
-path: "/bearing-calculator",
-},
-{
-icon: "📍",
-title: "Coordinates",
-description: "View live GPS coordinates and DMS format.",
-path: "/coordinate-converter",
-},
+
+  {
+    icon:"🧭",
+    title:"Online Compass",
+    desc:"Use your phone as a real compass and find accurate directions instantly.",
+    link:"/online-compass"
+  },
+
+  {
+    icon:"🕋",
+    title:"Qibla Finder",
+    desc:"Find the exact direction of Kaaba from anywhere in the world.",
+    link:"/qibla-finder"
+  },
+
+  {
+    icon:"📏",
+    title:"Distance Calculator",
+    desc:"Calculate distance between two locations using GPS coordinates.",
+    link:"/distance-calculator"
+  },
+
+  {
+    icon:"🎯",
+    title:"Bearing Calculator",
+    desc:"Calculate the bearing angle between any two coordinates.",
+    link:"/bearing-calculator"
+  },
+
+  {
+    icon:"📍",
+    title:"Coordinate Converter",
+    desc:"Convert GPS coordinates into Decimal and DMS formats instantly.",
+    link:"/coordinate-converter"
+  }
+
 ];
 
-return ( <main className="relative overflow-hidden">
+export default function Home(){
+
+return(
+
+<div className="max-w-7xl mx-auto px-5 py-12">
+
+{/* HERO */}
+
+<div className="text-center">
+
+<div
+className="
+inline-flex
+items-center
+gap-2
+bg-green-500/10
+border
+border-green-500/20
+px-5
+py-2
+rounded-full
+text-green-400
+font-semibold
+"
+>
+
+🌍 Free Worldwide Tools
+
+</div>
+
+<h1
+className="
+text-5xl
+md:text-7xl
+font-black
+mt-8
+leading-tight
+"
+>
+
+🧭 Compassly
+
+</h1>
+
+<p
+className="
+text-slate-300
+text-lg
+md:text-2xl
+max-w-3xl
+mx-auto
+mt-6
+leading-relaxed
+"
+>
+
+Free Online Compass,
+
+Qibla Finder,
+
+Distance Calculator,
+
+Bearing Calculator
+
+and GPS Coordinate Converter.
+
+Fast, Accurate and Mobile Friendly.
+
+</p>
 
 
-  <div
-    className="
-      absolute
-      top-0
-      left-1/2
-      -translate-x-1/2
-      w-[500px]
-      md:w-[700px]
-      h-[500px]
-      md:h-[700px]
-      rounded-full
-      bg-blue-500/10
-      blur-[120px]
-      pointer-events-none
-    "
-  />
+<div className="mt-10 flex justify-center gap-4 flex-wrap">
 
-  <div className="max-w-7xl mx-auto px-4 sm:px-6">
+<Link
 
-    {/* HERO */}
+to="/online-compass"
 
-    <section className="text-center py-16 md:py-24">
+className="
+bg-green-600
+hover:bg-green-700
+px-8
+py-4
+rounded-2xl
+font-bold
+text-lg
+shadow-xl
+transition
+"
 
-      <div
-        className="
-          inline-block
-          px-4
-          py-2
-          rounded-full
-          bg-blue-500/10
-          border
-          border-blue-500/20
-          text-blue-400
-          text-xs
-          sm:text-sm
-          mb-6
-        "
-      >
-        🚀 Free Navigation Toolkit
-      </div>
+>
 
-      <h1 className="text-4xl md:text-6xl font-bold">
-        Compassly
-      </h1>
+Open Compass →
 
-      <h2
-        className="
-          text-2xl
-          md:text-5xl
-          font-bold
-          mt-6
-          bg-gradient-to-r
-          from-blue-400
-          to-cyan-300
-          bg-clip-text
-          text-transparent
-        "
-      >
-        Your Complete Navigation Toolkit
-      </h2>
+</Link>
 
-      <p
-        className="
-          max-w-3xl
-          mx-auto
-          mt-6
-          text-base
-          md:text-xl
-          text-slate-400
-          leading-8
-        "
-      >
-        Compassly combines Compass, Qibla Finder,
-        GPS Coordinates, Distance Calculator,
-        and Bearing Tools into one powerful platform.
-      </p>
 
-      <div
-        className="
-          flex
-          flex-col
-          sm:flex-row
-          justify-center
-          gap-4
-          mt-10
-        "
-      >
-        <Link
-          to="/online-compass"
-          className="
-            bg-blue-600
-            px-6
-            py-4
-            rounded-2xl
-            font-semibold
-            hover:bg-blue-500
-            transition
-          "
-        >
-          Start Exploring
-        </Link>
+<Link
 
-        <Link
-          to="/qibla-finder"
-          className="
-            border
-            border-slate-700
-            px-6
-            py-4
-            rounded-2xl
-            hover:bg-slate-900
-          "
-        >
-          Open Qibla Finder
-        </Link>
-      </div>
+to="/qibla-finder"
 
-    </section>
+className="
+bg-slate-900
+border
+border-slate-700
+hover:border-green-500
+px-8
+py-4
+rounded-2xl
+font-bold
+text-lg
+transition
+"
 
-    {/* STATS */}
+>
 
-    <section className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
+Find Qibla
 
-      <div className="bg-slate-900 rounded-3xl p-6 text-center">
-        <h3 className="text-4xl font-bold">5+</h3>
-        <p className="text-slate-400 mt-2">
-          Navigation Tools
-        </p>
-      </div>
+</Link>
 
-      <div className="bg-slate-900 rounded-3xl p-6 text-center">
-        <h3 className="text-4xl font-bold">GPS</h3>
-        <p className="text-slate-400 mt-2">
-          Live Location
-        </p>
-      </div>
+</div>
 
-      <div className="bg-slate-900 rounded-3xl p-6 text-center">
-        <h3 className="text-4xl font-bold">24/7</h3>
-        <p className="text-slate-400 mt-2">
-          Always Available
-        </p>
-      </div>
+</div>
 
-      <div className="bg-slate-900 rounded-3xl p-6 text-center">
-        <h3 className="text-4xl font-bold">100%</h3>
-        <p className="text-slate-400 mt-2">
-          Free Forever
-        </p>
-      </div>
 
-    </section>
+{/* TOOL CARDS */}
 
-    {/* TOOLS */}
+<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7 mt-24">
 
-    <section className="mb-24">
+{
 
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-        Navigation Tools
-      </h2>
+tools.map((tool,index)=>(
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<Link
 
-        {tools.map((tool) => (
-          <Link
-            key={tool.title}
-            to={tool.path}
-            className="
-              bg-gradient-to-br
-              from-slate-900
-              to-slate-800
-              border
-              border-slate-800
-              rounded-3xl
-              p-6
-              hover:border-blue-500
-              hover:-translate-y-2
-              transition
-            "
-          >
-            <div className="text-5xl mb-4">
-              {tool.icon}
-            </div>
+key={index}
 
-            <h3 className="text-2xl font-bold mb-3">
-              {tool.title}
-            </h3>
+to={tool.link}
 
-            <p className="text-slate-400">
-              {tool.description}
-            </p>
+className="
+group
+bg-slate-900/70
+backdrop-blur-xl
+border
+border-slate-800
+rounded-3xl
+p-8
+hover:border-green-500
+hover:-translate-y-2
+transition-all
+duration-300
+"
 
-          </Link>
-        ))}
+>
 
-      </div>
+<div className="text-6xl">
 
-    </section>
+{tool.icon}
 
-    {/* WHY PEOPLE USE */}
+</div>
 
-    <section className="mb-24">
+<h2 className="text-3xl font-bold mt-6">
 
-      <h2 className="text-4xl font-bold text-center mb-12">
-        Why People Use Compassly
-      </h2>
+{tool.title}
 
-      <div className="grid md:grid-cols-3 gap-6">
+</h2>
 
-        <div className="bg-slate-900 rounded-3xl p-6">
-          <h3 className="text-xl font-bold mb-3">
-            🥾 Travelers & Hikers
-          </h3>
+<p className="text-slate-400 mt-4 leading-relaxed">
 
-          <p className="text-slate-400">
-            Navigate confidently using compass,
-            coordinates and distance tools.
-          </p>
-        </div>
+{tool.desc}
 
-        <div className="bg-slate-900 rounded-3xl p-6">
-          <h3 className="text-xl font-bold mb-3">
-            🕌 Muslims Worldwide
-          </h3>
+</p>
 
-          <p className="text-slate-400">
-            Quickly find accurate Qibla direction
-            from anywhere in the world.
-          </p>
-        </div>
+<div
+className="
+mt-8
+text-green-400
+font-semibold
+group-hover:translate-x-2
+transition
+"
+>
 
-        <div className="bg-slate-900 rounded-3xl p-6">
-          <h3 className="text-xl font-bold mb-3">
-            🌍 GPS Enthusiasts
-          </h3>
+Open →
 
-          <p className="text-slate-400">
-            View live coordinates, bearings,
-            and distances instantly.
-          </p>
-        </div>
+</div>
 
-      </div>
+</Link>
 
-    </section>
+))
 
-    {/* COMING SOON */}
+}
 
-    <section className="mb-24">
+</div>
 
-      <h2 className="text-4xl font-bold text-center mb-12">
-        Coming Soon
-      </h2>
 
-      <div className="grid md:grid-cols-3 gap-6">
 
-        <div className="bg-slate-900 rounded-3xl p-6">
-          🌤 Weather
-        </div>
+{/* STATS */}
 
-        <div className="bg-slate-900 rounded-3xl p-6">
-          🌅 Sunrise & Sunset
-        </div>
+<div className="grid grid-cols-3 gap-5 mt-24">
 
-        <div className="bg-slate-900 rounded-3xl p-6">
-          ⛰ Altitude Finder
-        </div>
+<div
+className="
+bg-slate-900
+rounded-3xl
+p-6
+text-center
+border
+border-slate-800
+"
+>
 
-      </div>
+<h2 className="text-5xl font-black">
 
-    </section>
+100%
 
-    {/* ABOUT */}
+</h2>
 
-    <section className="mb-24">
+<p className="text-slate-400 mt-2">
 
-      <div className="bg-slate-900 rounded-3xl p-8">
+Free
 
-        <h2 className="text-4xl font-bold mb-6">
-          Why Use Compassly?
-        </h2>
+</p>
 
-        <p className="text-slate-400 leading-8 mb-6">
-          Compassly is a free online navigation
-          platform offering a compass, Qibla finder,
-          distance calculator, bearing calculator,
-          and coordinate converter.
-        </p>
+</div>
 
-        <p className="text-slate-400 leading-8">
-          Whether you're traveling, hiking,
-          surveying land, studying geography,
-          or finding the Qibla direction,
-          Compassly provides accurate tools
-          directly in your browser.
-        </p>
 
-      </div>
 
-    </section>
+<div
+className="
+bg-slate-900
+rounded-3xl
+p-6
+text-center
+border
+border-slate-800
+"
+>
 
-  </div>
+<h2 className="text-5xl font-black">
 
-</main>
+5+
 
-);
+</h2>
+
+<p className="text-slate-400 mt-2">
+
+Tools
+
+</p>
+
+</div>
+
+
+
+<div
+className="
+bg-slate-900
+rounded-3xl
+p-6
+text-center
+border
+border-slate-800
+"
+>
+
+<h2 className="text-5xl font-black">
+
+24/7
+
+</h2>
+
+<p className="text-slate-400 mt-2">
+
+Available
+
+</p>
+
+</div>
+
+</div>
+
+
+
+{/* FOOT TEXT */}
+
+<div className="text-center mt-20">
+
+<p className="text-slate-500 max-w-2xl mx-auto">
+
+Compassly is a free collection of navigation and GPS tools
+
+including compass, qibla finder, distance calculator,
+
+bearing calculator and coordinate converter.
+
+Works on Android, iPhone and Desktop.
+
+</p>
+
+</div>
+
+</div>
+
+)
+
 }

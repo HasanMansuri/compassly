@@ -1,52 +1,208 @@
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-return ( <header className="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
 
-  <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
+  return (
 
-    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+    <header
+      className="
+      sticky
+      top-0
+      z-50
+      backdrop-blur-xl
+      bg-slate-950/70
+      border-b
+      border-slate-800
+      "
+    >
 
-      <Link
-        to="/"
-        className="text-2xl font-black flex items-center gap-2"
-      >
-        🧭 Compassly
+      <div className="max-w-7xl mx-auto px-4 py-4">
 
-        <span className="bg-blue-600 text-xs px-2 py-1 rounded-full">
-          FREE
-        </span>
-      </Link>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5">
 
-      <nav className="flex flex-wrap justify-center gap-5 text-sm md:text-base text-slate-300">
+          {/* Logo */}
 
-        <Link to="/online-compass" className="hover:text-white">
-          🧭 Compass
-        </Link>
+          <Link
+            to="/"
+            className="flex items-center gap-3"
+          >
 
-        <Link to="/qibla-finder" className="hover:text-white">
-          🕋 Qibla
-        </Link>
+            <div
+              className="
+              w-14
+              h-14
+              rounded-2xl
+              bg-gradient-to-br
+              from-green-500
+              to-emerald-700
+              flex
+              items-center
+              justify-center
+              text-3xl
+              shadow-lg
+              "
+            >
 
-        <Link to="/distance-calculator" className="hover:text-white">
-          📏 Distance
-        </Link>
+              🧭
 
-        <Link to="/bearing-calculator" className="hover:text-white">
-          🎯 Bearing
-        </Link>
+            </div>
 
-        <Link to="/coordinate-converter" className="hover:text-white">
-          📍 Coordinates
-        </Link>
+            <div>
 
-      </nav>
+              <h1 className="text-3xl font-black">
 
-    </div>
+                Compassly
 
-  </div>
+              </h1>
 
-</header>
+              <p className="text-xs text-slate-400">
 
-);
+                Compass • Qibla • GPS
+
+              </p>
+
+            </div>
+
+          </Link>
+
+
+          {/* Navigation */}
+
+          <nav
+            className="
+            flex
+            flex-wrap
+            justify-center
+            gap-3
+            "
+          >
+
+            <Link
+
+              to="/online-compass"
+
+              className="
+              px-4
+              py-2
+              rounded-xl
+              bg-slate-900
+              border
+              border-slate-800
+              hover:border-green-500
+              hover:text-green-400
+              transition
+              "
+
+            >
+
+              🧭 Compass
+
+            </Link>
+
+
+
+            <Link
+
+              to="/qibla-finder"
+
+              className="
+              px-4
+              py-2
+              rounded-xl
+              bg-slate-900
+              border
+              border-slate-800
+              hover:border-green-500
+              hover:text-green-400
+              transition
+              "
+
+            >
+
+              🕋 Qibla
+
+            </Link>
+
+
+
+            <Link
+
+              to="/distance-calculator"
+
+              className="
+              px-4
+              py-2
+              rounded-xl
+              bg-slate-900
+              border
+              border-slate-800
+              hover:border-green-500
+              hover:text-green-400
+              transition
+              "
+
+            >
+
+              📏 Distance
+
+            </Link>
+
+
+
+            <Link
+
+              to="/bearing-calculator"
+
+              className="
+              px-4
+              py-2
+              rounded-xl
+              bg-slate-900
+              border
+              border-slate-800
+              hover:border-green-500
+              hover:text-green-400
+              transition
+              "
+
+            >
+
+              🎯 Bearing
+
+            </Link>
+
+
+
+            <Link
+
+              to="/coordinate-converter"
+
+              className="
+              px-4
+              py-2
+              rounded-xl
+              bg-slate-900
+              border
+              border-slate-800
+              hover:border-green-500
+              hover:text-green-400
+              transition
+              "
+
+            >
+
+              📍 Coordinates
+
+            </Link>
+
+          </nav>
+
+        </div>
+
+      </div>
+
+    </header>
+
+  );
+
 }
