@@ -37,16 +37,13 @@ export default function Navbar() {
   ];
 
 
-  return (
+ return (
 
 <header
-
 className="
 
 sticky
-
 top-0
-
 z-50
 
 backdrop-blur-xl
@@ -58,40 +55,24 @@ border-b
 border-slate-800
 
 "
-
 >
 
-<div className="max-w-6xl mx-auto px-4 py-4">
+<div className="max-w-6xl mx-auto px-4 py-3">
 
 
+{/* TOP */}
 
-<Link
-
-to="/"
-
-className="
-
-flex
-
-items-center
-
-justify-center
-
-gap-4
-
-"
-
->
+<div className="flex items-center justify-center gap-3">
 
 <div
 
 className="
 
-w-16
+w-14
 
-h-16
+h-14
 
-rounded-3xl
+rounded-2xl
 
 bg-gradient-to-br
 
@@ -105,7 +86,7 @@ items-center
 
 justify-center
 
-text-4xl
+text-3xl
 
 shadow-lg
 
@@ -126,13 +107,11 @@ className="
 
 text-3xl
 
-md:text-5xl
-
 font-black
 
-text-white
-
 leading-none
+
+text-white
 
 "
 
@@ -147,9 +126,7 @@ Compassly
 
 className="
 
-text-sm
-
-md:text-lg
+text-xs
 
 text-slate-400
 
@@ -165,9 +142,11 @@ Compass • Qibla • GPS
 
 </div>
 
-</Link>
+</div>
 
 
+
+{/* MENU */}
 
 <nav
 
@@ -177,33 +156,33 @@ flex
 
 justify-center
 
-flex-wrap
+gap-2
 
-gap-3
+overflow-x-auto
 
-mt-5
+mt-4
+
+pb-1
+
+scrollbar-hide
 
 "
 
 >
 
-{
-
-menus.map((item)=>(
-
 <Link
 
-key={item.name}
-
-to={item.path}
+to="/online-compass"
 
 className="
 
-px-4
+whitespace-nowrap
+
+px-3
 
 py-2
 
-rounded-2xl
+rounded-full
 
 bg-slate-900
 
@@ -211,44 +190,149 @@ border
 
 border-slate-800
 
-text-slate-200
-
 text-sm
-
-md:text-lg
-
-hover:border-green-500
-
-hover:text-white
-
-transition
 
 "
 
 >
 
-<span className="mr-1">
-
-{item.icon}
-
-</span>
-
-{item.name}
+🧭 Compass
 
 </Link>
 
-))
 
-}
+
+<Link
+
+to="/qibla-finder"
+
+className="
+
+whitespace-nowrap
+
+px-3
+
+py-2
+
+rounded-full
+
+bg-slate-900
+
+border
+
+border-slate-800
+
+text-sm
+
+"
+
+>
+
+🕋 Qibla
+
+</Link>
+
+
+
+<Link
+
+to="/distance-calculator"
+
+className="
+
+whitespace-nowrap
+
+px-3
+
+py-2
+
+rounded-full
+
+bg-slate-900
+
+border
+
+border-slate-800
+
+text-sm
+
+"
+
+>
+
+📏 Distance
+
+</Link>
+
+
+
+<Link
+
+to="/bearing-calculator"
+
+className="
+
+whitespace-nowrap
+
+px-3
+
+py-2
+
+rounded-full
+
+bg-slate-900
+
+border
+
+border-slate-800
+
+text-sm
+
+"
+
+>
+
+🎯 Bearing
+
+</Link>
+
+
+
+<Link
+
+to="/coordinate-converter"
+
+className="
+
+whitespace-nowrap
+
+px-3
+
+py-2
+
+rounded-full
+
+bg-slate-900
+
+border
+
+border-slate-800
+
+text-sm
+
+"
+
+>
+
+📍 Coordinates
+
+</Link>
+
 
 </nav>
-
-
 
 </div>
 
 </header>
 
-  );
-
-}
+)}
