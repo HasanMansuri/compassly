@@ -1,15 +1,39 @@
+import { Helmet } from "react-helmet";
+
 import DistanceCalculator from "../components/DistanceCalculator";
 
 export default function DistancePage() {
+
   return (
-    <div className="max-w-6xl mx-auto p-8">
 
-      <h1 className="text-4xl md:text-6xl font-bold">
-        Distance Calculator
-      </h1>
+    <>
 
-      <DistanceCalculator />
+      <Helmet>
 
-    </div>
+        <title>
+
+          Distance Calculator - Compassly
+
+        </title>
+
+        <meta
+
+          name="description"
+
+          content="Calculate distance between two GPS locations instantly."
+
+        />
+
+      </Helmet>
+
+      <div className="max-w-6xl mx-auto p-4">
+
+        <DistanceCalculator />
+
+      </div>
+
+    </>
+
   );
+
 }

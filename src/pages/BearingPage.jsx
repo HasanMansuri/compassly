@@ -1,20 +1,38 @@
+import { Helmet } from "react-helmet";
+
 import BearingCalculator from "../components/BearingCalculator";
 
 export default function BearingPage() {
 
   return (
 
-    <div className="max-w-6xl mx-auto p-6">
+    <>
 
-      <h1 className="text-4xl md:text-6xl font-bold mb-8">
+      <Helmet>
 
-        Bearing Calculator
+        <title>
 
-      </h1>
+          Bearing Calculator - Compassly
 
-      <BearingCalculator />
+        </title>
 
-    </div>
+        <meta
+
+          name="description"
+
+          content="Calculate GPS bearing between two locations instantly."
+
+        />
+
+      </Helmet>
+
+      <div className="max-w-6xl mx-auto p-4">
+
+        <BearingCalculator />
+
+      </div>
+
+    </>
 
   );
 
