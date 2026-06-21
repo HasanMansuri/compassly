@@ -1,8 +1,128 @@
-import { Link } from "react-router-dom";
+import {
 
-export default function Navbar() {
+Link,
 
-return (
+useLocation
+
+}
+
+from "react-router-dom";
+
+import {
+
+Compass,
+
+MapPinned,
+
+Ruler,
+
+Navigation,
+
+Map
+
+}
+
+from "lucide-react";
+
+export default function Navbar(){
+
+const location=useLocation();
+
+const links=[
+
+{
+
+path:"/online-compass",
+
+icon:
+
+<Compass
+
+size={22}
+
+strokeWidth={2.3}
+
+/>,
+
+label:"Compass"
+
+},
+
+{
+
+path:"/qibla-finder",
+
+icon:
+
+<MapPinned
+
+size={22}
+
+strokeWidth={2.3}
+
+/>,
+
+label:"Qibla"
+
+},
+
+{
+
+path:"/distance-calculator",
+
+icon:
+
+<Ruler
+
+size={22}
+
+strokeWidth={2.3}
+
+/>,
+
+label:"Distance"
+
+},
+
+{
+
+path:"/bearing-calculator",
+
+icon:
+
+<Navigation
+
+size={22}
+
+strokeWidth={2.3}
+
+/>,
+
+label:"Bearing"
+
+},
+
+{
+
+path:"/coordinate-converter",
+
+icon:
+
+<Map
+
+size={22}
+
+strokeWidth={2.3}
+
+/>,
+
+label:"GPS"
+
+}
+
+]
+
+return(
 
 <header
 
@@ -14,20 +134,33 @@ top-0
 
 z-50
 
-backdrop-blur-xl
+backdrop-blur-2xl
 
-bg-slate-950/90
+bg-slate-950/70
 
 border-b
 
-border-slate-800
+border-white/5
 
 "
 
 >
 
-<div className="max-w-6xl mx-auto px-4 py-3">
+<div
 
+className="
+
+max-w-7xl
+
+mx-auto
+
+px-4
+
+py-4
+
+"
+
+>
 
 {/* LOGO */}
 
@@ -39,11 +172,9 @@ className="
 
 flex
 
+flex-col
+
 items-center
-
-justify-center
-
-gap-3
 
 "
 
@@ -53,17 +184,15 @@ gap-3
 
 className="
 
-w-14
+glass
 
-h-14
+glow
 
-rounded-2xl
+w-16
 
-bg-gradient-to-br
+h-16
 
-from-green-500
-
-to-emerald-700
+rounded-3xl
 
 flex
 
@@ -71,29 +200,35 @@ items-center
 
 justify-center
 
-text-3xl
+spinSlow
 
 "
 
 >
 
-🧭
+<Compass
+
+size={34}
+
+strokeWidth={2.3}
+
+className="text-green-400"
+
+/>
 
 </div>
-
-
-
-<div>
 
 <h1
 
 className="
 
+hero-gradient
+
 text-4xl
 
 font-black
 
-leading-none
+mt-3
 
 "
 
@@ -103,14 +238,15 @@ Compassly
 
 </h1>
 
-
 <p
 
 className="
 
-text-sm
-
 text-slate-400
+
+text-xs
+
+mt-1
 
 "
 
@@ -120,11 +256,7 @@ Compass • Qibla • GPS
 
 </p>
 
-</div>
-
 </Link>
-
-
 
 {/* MENU */}
 
@@ -136,97 +268,95 @@ flex
 
 justify-center
 
-gap-5
+gap-3
 
-mt-4
+mt-6
 
-text-3xl
+flex-wrap
 
 "
 
 >
 
-<Link
+{
 
-to="/online-compass"
-
-title="Compass"
-
-className="hover:scale-110 transition"
-
->
-
-🧭
-
-</Link>
-
-
+links.map((item)=>(
 
 <Link
 
-to="/qibla-finder"
+key={item.path}
 
-title="Qibla"
+to={item.path}
 
-className="hover:scale-110 transition"
+className={`
 
->
+w-[70px]
 
-🕋
+h-[70px]
 
-</Link>
+rounded-[22px]
 
+flex
 
+flex-col
 
-<Link
+items-center
 
-to="/distance-calculator"
+justify-center
 
-title="Distance"
+transition
 
-className="hover:scale-110 transition"
+duration-300
 
->
+${
 
-📏
+location.pathname===item.path
 
-</Link>
+?
 
+"bg-gradient-to-br from-green-500 to-emerald-700 shadow-[0_0_35px_rgba(34,197,94,.35)] scale-105"
 
+:
 
-<Link
+"glass hover:scale-105 hover:border-green-500"
 
-to="/bearing-calculator"
+}
 
-title="Bearing"
-
-className="hover:scale-110 transition"
-
->
-
-🎯
-
-</Link>
-
-
-
-<Link
-
-to="/coordinate-converter"
-
-title="Coordinates"
-
-className="hover:scale-110 transition"
+`}
 
 >
 
-📍
+<div>
+
+{item.icon}
+
+</div>
+
+<span
+
+className="
+
+text-[11px]
+
+font-semibold
+
+mt-1
+
+"
+
+>
+
+{item.label}
+
+</span>
 
 </Link>
 
+))
+
+}
 
 </nav>
-
 
 </div>
 
