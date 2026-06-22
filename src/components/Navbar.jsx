@@ -1,28 +1,4 @@
-import {
-
-Link,
-
-useLocation
-
-}
-
-from "react-router-dom";
-
-import {
-
-Compass,
-
-MapPinned,
-
-Ruler,
-
-Navigation,
-
-Map
-
-}
-
-from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar(){
 
@@ -34,15 +10,7 @@ const links=[
 
 path:"/online-compass",
 
-icon:
-
-<Compass
-
-size={22}
-
-strokeWidth={2.3}
-
-/>,
+icon:"🧭",
 
 label:"Compass"
 
@@ -52,15 +20,7 @@ label:"Compass"
 
 path:"/qibla-finder",
 
-icon:
-
-<MapPinned
-
-size={22}
-
-strokeWidth={2.3}
-
-/>,
+icon:"🕋",
 
 label:"Qibla"
 
@@ -70,15 +30,7 @@ label:"Qibla"
 
 path:"/distance-calculator",
 
-icon:
-
-<Ruler
-
-size={22}
-
-strokeWidth={2.3}
-
-/>,
+icon:"📏",
 
 label:"Distance"
 
@@ -88,15 +40,7 @@ label:"Distance"
 
 path:"/bearing-calculator",
 
-icon:
-
-<Navigation
-
-size={22}
-
-strokeWidth={2.3}
-
-/>,
+icon:"🎯",
 
 label:"Bearing"
 
@@ -106,15 +50,7 @@ label:"Bearing"
 
 path:"/coordinate-converter",
 
-icon:
-
-<Map
-
-size={22}
-
-strokeWidth={2.3}
-
-/>,
+icon:"📍",
 
 label:"GPS"
 
@@ -140,7 +76,7 @@ bg-slate-950/70
 
 border-b
 
-border-white/5
+border-slate-800
 
 "
 
@@ -154,15 +90,13 @@ max-w-7xl
 
 mx-auto
 
-px-4
+px-5
 
-py-4
+py-5
 
 "
 
 >
-
-{/* LOGO */}
 
 <Link
 
@@ -184,15 +118,17 @@ items-center
 
 className="
 
-glass
+w-20
 
-glow
+h-20
 
-w-16
+rounded-full
 
-h-16
+bg-gradient-to-br
 
-rounded-3xl
+from-green-500
+
+to-emerald-700
 
 flex
 
@@ -200,21 +136,17 @@ items-center
 
 justify-center
 
-spinSlow
+text-5xl
+
+shadow-2xl
+
+glow
 
 "
 
 >
 
-<Compass
-
-size={34}
-
-strokeWidth={2.3}
-
-className="text-green-400"
-
-/>
+🧭
 
 </div>
 
@@ -222,13 +154,15 @@ className="text-green-400"
 
 className="
 
-hero-gradient
+mt-5
 
 text-4xl
 
+md:text-5xl
+
 font-black
 
-mt-3
+hero-gradient
 
 "
 
@@ -244,9 +178,11 @@ className="
 
 text-slate-400
 
-text-xs
+mt-2
 
-mt-1
+text-sm
+
+md:text-base
 
 "
 
@@ -258,8 +194,6 @@ Compass • Qibla • GPS
 
 </Link>
 
-{/* MENU */}
-
 <nav
 
 className="
@@ -270,7 +204,9 @@ justify-center
 
 gap-3
 
-mt-6
+md:gap-5
+
+mt-8
 
 flex-wrap
 
@@ -290,11 +226,15 @@ to={item.path}
 
 className={`
 
-w-[70px]
+w-20
 
-h-[70px]
+h-20
 
-rounded-[22px]
+md:w-24
+
+md:h-24
+
+rounded-3xl
 
 flex
 
@@ -308,17 +248,19 @@ transition
 
 duration-300
 
+shadow-lg
+
 ${
 
 location.pathname===item.path
 
 ?
 
-"bg-gradient-to-br from-green-500 to-emerald-700 shadow-[0_0_35px_rgba(34,197,94,.35)] scale-105"
+"bg-green-500 text-white scale-105 glow"
 
 :
 
-"glass hover:scale-105 hover:border-green-500"
+"glass hover:border-green-500 hover:-translate-y-1"
 
 }
 
@@ -326,21 +268,31 @@ location.pathname===item.path
 
 >
 
-<div>
+<div
+
+className="
+
+text-3xl
+
+"
+
+>
 
 {item.icon}
 
 </div>
 
-<span
+<div
 
 className="
 
-text-[11px]
+text-xs
+
+md:text-sm
 
 font-semibold
 
-mt-1
+mt-2
 
 "
 
@@ -348,7 +300,7 @@ mt-1
 
 {item.label}
 
-</span>
+</div>
 
 </Link>
 

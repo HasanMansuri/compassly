@@ -2,28 +2,6 @@ import { Link } from "react-router-dom";
 
 import { Helmet } from "react-helmet-async";
 
-import {
-
-Compass,
-
-MapPinned,
-
-Ruler,
-
-Navigation,
-
-Map,
-
-Shield,
-
-Smartphone,
-
-Globe
-
-}
-
-from "lucide-react";
-
 export default function Home(){
 
 const tools=[
@@ -32,19 +10,11 @@ const tools=[
 
 title:"Online Compass",
 
-icon:<Compass size={50} strokeWidth={2.2}/>,
+icon:"🧭",
 
-desc:
+desc:"Find true north instantly with a beautiful and accurate compass.",
 
-"Find north instantly with real-time heading and accurate compass degrees.",
-
-features:
-
-["Real-time","Accurate","Free"],
-
-link:
-
-"/online-compass"
+link:"/online-compass"
 
 },
 
@@ -52,19 +22,11 @@ link:
 
 title:"Qibla Finder",
 
-icon:<MapPinned size={50} strokeWidth={2.2}/>,
+icon:"🕋",
 
-desc:
+desc:"Find the direction of Makkah accurately from anywhere.",
 
-"Find accurate Qibla direction from anywhere in the world.",
-
-features:
-
-["GPS","Fast","Worldwide"],
-
-link:
-
-"/qibla-finder"
+link:"/qibla-finder"
 
 },
 
@@ -72,19 +34,11 @@ link:
 
 title:"Distance Calculator",
 
-icon:<Ruler size={50} strokeWidth={2.2}/>,
+icon:"📏",
 
-desc:
+desc:"Measure distance between two locations instantly.",
 
-"Calculate distance between coordinates instantly and accurately.",
-
-features:
-
-["Fast","Precise","Mobile"],
-
-link:
-
-"/distance-calculator"
+link:"/distance-calculator"
 
 },
 
@@ -92,19 +46,11 @@ link:
 
 title:"Bearing Calculator",
 
-icon:<Navigation size={50} strokeWidth={2.2}/>,
+icon:"🎯",
 
-desc:
+desc:"Calculate bearings and directions precisely.",
 
-"Calculate bearings and headings quickly for navigation.",
-
-features:
-
-["Simple","Instant","Free"],
-
-link:
-
-"/bearing-calculator"
+link:"/bearing-calculator"
 
 },
 
@@ -112,53 +58,11 @@ link:
 
 title:"Coordinate Converter",
 
-icon:<Map size={50} strokeWidth={2.2}/>,
+icon:"📍",
 
-desc:
+desc:"Convert GPS coordinates between formats.",
 
-"Convert GPS coordinates between Decimal and DMS format.",
-
-features:
-
-["GPS","Decimal","DMS"],
-
-link:
-
-"/coordinate-converter"
-
-}
-
-]
-
-const faqs=[
-
-{
-
-q:"Is Compassly free?",
-
-a:
-
-"Yes. Compassly is completely free and available worldwide."
-
-},
-
-{
-
-q:"Does Compassly work on mobile?",
-
-a:
-
-"Yes. Compassly is optimized for Android and iPhone devices."
-
-},
-
-{
-
-q:"Is my location stored?",
-
-a:
-
-"No. Compassly does not store your GPS location or compass information."
+link:"/coordinate-converter"
 
 }
 
@@ -180,25 +84,59 @@ Compassly - Free Online Compass & GPS Tools
 
 name="description"
 
-content="Compassly offers a free Online Compass, Qibla Finder, Distance Calculator, Bearing Calculator and GPS Coordinate Converter."
-
-/>
-
-<meta
-
-name="keywords"
-
-content="online compass,qibla finder,distance calculator,bearing calculator,gps coordinate converter"
+content="Free Online Compass, Qibla Finder, Distance Calculator, Bearing Calculator and Coordinate Converter."
 
 />
 
 </Helmet>
 
-<div className="max-w-7xl mx-auto px-4 py-8 overflow-x-hidden">
+<div
+
+className="
+
+max-w-7xl
+
+mx-auto
+
+px-5
+
+"
+
+>
 
 {/* HERO */}
 
-<section className="text-center relative py-10 md:py-20">
+<section
+
+className="
+
+min-h-[85vh]
+
+flex
+
+flex-col
+
+items-center
+
+justify-center
+
+text-center
+
+fadeUp
+
+"
+
+>
+
+<div
+
+className="
+
+relative
+
+"
+
+>
 
 <div
 
@@ -206,63 +144,79 @@ className="
 
 absolute
 
-left-1/2
-
-top-5
-
--translate-x-1/2
-
-w-72
-
-h-72
+inset-0
 
 bg-green-500/20
 
-blur-3xl
+blur-[80px]
 
 rounded-full
 
 "
 
-> </div>
+>
 
-<img
-
-src="/compass.svg"
-
-alt="Compass"
-
-className="
-
-w-40
-
-h-40
-
-md:w-52
-
-md:h-52
-
-mx-auto
-
-float
-
-drop-shadow-[0_0_40px_rgba(34,197,94,.25)]
-
-"
-
-/>
+</div>
 
 <div
 
 className="
 
-inline-flex
+relative
 
-mt-8
+w-40
+
+h-40
+
+md:w-56
+
+md:h-56
+
+rounded-full
+
+glass
+
+flex
+
+items-center
+
+justify-center
+
+spinSlow
+
+"
+
+>
+
+<div
+
+className="
+
+text-[90px]
+
+md:text-[130px]
+
+"
+
+>
+
+🧭
+
+</div>
+
+</div>
+
+</div>
+
+<div
+
+className="
+
+mt-10
 
 px-5
 
-py-2
+py-3
 
 rounded-full
 
@@ -270,15 +224,13 @@ glass
 
 text-green-400
 
-font-semibold
-
-text-sm
+font-bold
 
 "
 
 >
 
-🌎 Trusted Navigation Tools
+🌍 Trusted Navigation Tools
 
 </div>
 
@@ -286,15 +238,17 @@ text-sm
 
 className="
 
+mt-8
+
+font-black
+
+leading-none
+
 hero-gradient
 
 text-6xl
 
 md:text-8xl
-
-font-black
-
-mt-7
 
 "
 
@@ -304,19 +258,23 @@ Compassly
 
 </h1>
 
-<p
+<h2
 
 className="
 
-text-3xl
-
-md:text-5xl
+text-white
 
 font-black
 
 mt-5
 
 leading-tight
+
+text-4xl
+
+md:text-6xl
+
+max-w-4xl
 
 "
 
@@ -328,7 +286,7 @@ Navigate The World
 
 With Confidence
 
-</p>
+</h2>
 
 <p
 
@@ -338,13 +296,15 @@ max-w-3xl
 
 mx-auto
 
-text-slate-400
+mt-8
 
-text-lg
+text-slate-400
 
 leading-9
 
-mt-8
+text-lg
+
+md:text-2xl
 
 "
 
@@ -366,9 +326,9 @@ Fast,
 
 accurate
 
-and optimized
+and beautifully optimized
 
-for mobile devices worldwide.
+for all devices worldwide.
 
 </p>
 
@@ -378,11 +338,11 @@ className="
 
 flex
 
-justify-center
-
-gap-4
+gap-5
 
 flex-wrap
+
+justify-center
 
 mt-10
 
@@ -394,33 +354,11 @@ mt-10
 
 to="/online-compass"
 
-className="
-
-px-8
-
-py-4
-
-rounded-2xl
-
-font-bold
-
-bg-gradient-to-r
-
-from-green-500
-
-to-emerald-600
-
-hover:scale-105
-
-transition
-
-shadow-2xl
-
-"
+className="btn-primary"
 
 >
 
-Open Compass
+🧭 Open Compass
 
 </Link>
 
@@ -428,27 +366,11 @@ Open Compass
 
 to="/qibla-finder"
 
-className="
-
-px-8
-
-py-4
-
-rounded-2xl
-
-font-bold
-
-glass
-
-hover:scale-105
-
-transition
-
-"
+className="btn-secondary"
 
 >
 
-Find Qibla
+🕋 Find Qibla
 
 </Link>
 
@@ -458,19 +380,25 @@ Find Qibla
 
 {/* TOOLS */}
 
-<section className="mt-14">
+<section
+
+className="
+
+py-20
+
+"
+
+>
 
 <h2
 
 className="
 
-text-4xl
-
-font-black
-
-mb-10
+section-title
 
 text-center
+
+mb-5
 
 "
 
@@ -480,6 +408,34 @@ Explore Tools
 
 </h2>
 
+<p
+
+className="
+
+section-subtitle
+
+text-center
+
+max-w-2xl
+
+mx-auto
+
+mb-16
+
+"
+
+>
+
+Everything you need for navigation,
+
+Qibla direction,
+
+distance calculations
+
+and GPS coordinate conversions.
+
+</p>
+
 <div
 
 className="
@@ -488,11 +444,11 @@ grid
 
 grid-cols-1
 
-sm:grid-cols-2
+md:grid-cols-2
 
 lg:grid-cols-3
 
-gap-7
+gap-8
 
 "
 
@@ -510,13 +466,9 @@ to={tool.link}
 
 className="
 
-glass
-
-rounded-[30px]
+card
 
 p-8
-
-cardHover
 
 "
 
@@ -526,7 +478,7 @@ cardHover
 
 className="
 
-text-green-400
+text-7xl
 
 "
 
@@ -540,7 +492,7 @@ text-green-400
 
 className="
 
-text-2xl
+text-3xl
 
 font-black
 
@@ -562,7 +514,7 @@ text-slate-400
 
 leading-8
 
-mt-4
+mt-5
 
 "
 
@@ -576,63 +528,11 @@ mt-4
 
 className="
 
-flex
-
-gap-2
-
-flex-wrap
-
-mt-6
-
-"
-
->
-
-{
-
-tool.features.map((f)=>(
-
-<div
-
-key={f}
-
-className="
-
-px-3
-
-py-1
-
-rounded-full
-
-bg-slate-800
-
-text-xs
-
-text-slate-300
-
-"
-
->
-
-✓ {f}
-
-</div>
-
-))
-
-}
-
-</div>
-
-<div
-
-className="
-
-mt-8
+text-green-400
 
 font-bold
 
-text-green-400
+mt-8
 
 "
 
@@ -652,7 +552,7 @@ Open →
 
 </section>
 
-{/* TRUST */}
+{/* STATS */}
 
 <section
 
@@ -660,175 +560,63 @@ className="
 
 grid
 
-grid-cols-3
+grid-cols-1
 
-gap-4
+md:grid-cols-3
 
-mt-16
+gap-7
+
+py-20
 
 "
 
 >
 
-<div className="glass rounded-3xl p-5 text-center">
+<div className="card p-10 text-center">
 
-<Shield
+<h3 className="text-6xl font-black hero-gradient">
 
-size={40}
-
-className="mx-auto text-green-400"
-
-/>
-
-<h3 className="font-bold mt-4">
-
-Privacy First
+100%
 
 </h3>
 
-<p className="text-sm text-slate-400 mt-2">
+<p className="text-slate-400 mt-5">
 
-No data stored
+Free Forever
 
 </p>
 
 </div>
 
-<div className="glass rounded-3xl p-5 text-center">
+<div className="card p-10 text-center">
 
-<Smartphone
+<h3 className="text-6xl font-black hero-gradient">
 
-size={40}
-
-className="mx-auto text-green-400"
-
-/>
-
-<h3 className="font-bold mt-4">
-
-Mobile Friendly
+5+
 
 </h3>
 
-<p className="text-sm text-slate-400 mt-2">
+<p className="text-slate-400 mt-5">
 
-Works everywhere
+Powerful Tools
 
 </p>
 
 </div>
 
-<div className="glass rounded-3xl p-5 text-center">
+<div className="card p-10 text-center">
 
-<Globe
+<h3 className="text-6xl font-black hero-gradient">
 
-size={40}
-
-className="mx-auto text-green-400"
-
-/>
-
-<h3 className="font-bold mt-4">
-
-Worldwide
+24/7
 
 </h3>
 
-<p className="text-sm text-slate-400 mt-2">
+<p className="text-slate-400 mt-5">
 
-Available 24/7
-
-</p>
-
-</div>
-
-</section>
-
-{/* FAQ */}
-
-<section className="mt-20">
-
-<h2
-
-className="
-
-text-4xl
-
-font-black
-
-text-center
-
-mb-10
-
-"
-
->
-
-FAQ
-
-</h2>
-
-<div className="space-y-6">
-
-{
-
-faqs.map((item)=>(
-
-<div
-
-key={item.q}
-
-className="
-
-glass
-
-rounded-3xl
-
-p-7
-
-"
-
->
-
-<h3
-
-className="
-
-text-2xl
-
-font-bold
-
-"
-
->
-
-{item.q}
-
-</h3>
-
-<p
-
-className="
-
-text-slate-400
-
-leading-8
-
-mt-4
-
-"
-
->
-
-{item.a}
+Worldwide Access
 
 </p>
-
-</div>
-
-))
-
-}
 
 </div>
 
@@ -840,13 +628,23 @@ mt-4
 
 className="
 
+py-20
+
+"
+
+>
+
+<div
+
+className="
+
 glass
 
-rounded-[32px]
+rounded-[40px]
 
-p-8
+p-10
 
-mt-20
+md:p-16
 
 "
 
@@ -856,11 +654,7 @@ mt-20
 
 className="
 
-text-4xl
-
-font-black
-
-mb-6
+section-title
 
 "
 
@@ -874,37 +668,39 @@ About Compassly
 
 className="
 
-text-slate-400
+section-subtitle
 
-leading-9
-
-text-lg
+mt-8
 
 "
 
 >
 
-Compassly is a collection of free navigation
+Compassly is a free collection
 
-and GPS tools designed for people around the world.
+of navigation and GPS tools
 
-Our goal is to provide
+designed to help users worldwide.
 
-fast,
+Our mission is simple:
+
+build fast,
 
 accurate
 
-and privacy-friendly utilities
+and privacy-friendly tools
 
 that work beautifully
 
-on desktop,
+on phones,
 
-Android
+tablets
 
-and iPhone devices.
+and desktops.
 
 </p>
+
+</div>
 
 </section>
 
