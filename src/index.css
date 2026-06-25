@@ -56,7 +56,7 @@ overflow-x:hidden;
 
 body::-webkit-scrollbar{
 
-width:10px;
+width:6px;
 
 }
 
@@ -138,7 +138,7 @@ clamp(
 
 );
 
-font-weight:900;
+font-weight:400;
 
 line-height:1.1;
 
@@ -148,7 +148,7 @@ line-height:1.1;
 
 color:#94a3b8;
 
-line-height:1.8;
+line-height:2.8;
 
 font-size:1.1rem;
 
@@ -172,7 +172,7 @@ transition:.3s;
 
 backdrop-filter:
 
-blur(20px);
+blur(10px);
 
 }
 
@@ -212,11 +212,11 @@ linear-gradient(
 
 padding:
 
-16px 34px;
+12px 24px;
 
 border-radius:
 
-18px;
+13px;
 
 font-weight:
 
@@ -252,11 +252,11 @@ rgba(255,255,255,.05);
 
 padding:
 
-16px 34px;
+12px 24px;
 
 border-radius:
 
-18px;
+13px;
 
 transition:.3s;
 
