@@ -113,9 +113,21 @@ export default function Home() {
                 to={tool.link}
                 className="card p-6"
               >
-                <div className="text-5xl">
-                  {tool.icon}
-                </div>
+               <div
+  className="
+  w-20
+  h-20
+  mx-auto
+  rounded-3xl
+  bg-slate-800
+  flex
+  items-center
+  justify-center
+  text-5xl
+  "
+>
+  {tool.icon}
+</div>
 
                 <h3 className="mt-4 text-2xl font-bold">
                   {tool.title}
