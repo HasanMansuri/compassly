@@ -154,28 +154,28 @@ export default function Home() {
           <div className="grid gap-6 md:grid-cols-3">
 
             <div className="card p-8 text-center">
-              <h3 className="text-5xl font-black text-green-400">
+              <h3 className="text-3xl font-black text-green-200">
                 100%
               </h3>
-              <p className="mt-3 text-slate-400">
+              <p className="mt-3 text-slate-200">
                 Free Forever
               </p>
             </div>
 
-            <div className="card p-8 text-center">
-              <h3 className="text-5xl font-black text-green-400">
+            <div className="card p-4 text-center">
+              <h3 className="text-3xl font-black text-green-200">
                 5+
               </h3>
-              <p className="mt-3 text-slate-400">
+              <p className="mt-3 text-slate-200">
                 Powerful Tools
               </p>
             </div>
 
-            <div className="card p-8 text-center">
-              <h3 className="text-5xl font-black text-green-400">
+            <div className="card p-4 text-center">
+              <h3 className="text-3xl font-black text-green-200">
                 24/7
               </h3>
-              <p className="mt-3 text-slate-400">
+              <p className="mt-3 text-slate-200">
                 Available Worldwide
               </p>
             </div>
@@ -188,10 +188,10 @@ export default function Home() {
 
         <section className="py-16">
 
-          <div className="card p-8 md:p-12">
+          <div className="card p-4 md:p-8">
 
             <h2 className="section-title">
-              Why Compassly?
+                  Why Compassly?
             </h2>
 
             <p className="section-subtitle mt-6">
